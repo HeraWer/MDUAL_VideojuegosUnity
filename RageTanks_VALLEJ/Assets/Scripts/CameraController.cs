@@ -25,14 +25,12 @@ Vector3 playerPos = playerObject.transform.position;
     //afegir listener de l'event canvi d'estat del Player
     void OnEnable()
     {
-        PlayerStateController.onStateChange +=
-        onPlayerStateChange;
+        PlayerStateController.onStateChange += onPlayerStateChange;
     }
     //eliminar listener de l'event canvi d'estat del Player
     void OnDisable()
     {
-        PlayerStateController.onStateChange -=
-        onPlayerStateChange;
+        PlayerStateController.onStateChange -= onPlayerStateChange;
     }
     //Tractament de l'event canvi d'estat del Player: l'estat actual passa a ser el nou estat que indica l'event
 //El tractament concret es fara a onStateCycle()

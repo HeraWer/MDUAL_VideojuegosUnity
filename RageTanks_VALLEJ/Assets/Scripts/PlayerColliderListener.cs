@@ -14,6 +14,12 @@ public class PlayerColliderListener : MonoBehaviour
                 targetStateListener.onStateChange(
                 PlayerStateController.playerStates.landing);
                 break;
+            case "DeathTrigger":
+                // El Player ha caigut sobre el DeathTrigger. El matem.
+                Debug.Log("Col.lisio amb DeathTrigger. Tag: " + collidedObject.tag);
+                targetStateListener.onStateChange(PlayerStateController.playerStates.kill);
+                break;
+                
         }
     }
 }

@@ -8,10 +8,8 @@ public class PlayerStateListener : MonoBehaviour
     public float playerWalkSpeed = 3f;
     public GameObject playerRespawnPoint = null;
     private Animator playerAnimator = null;
-    private PlayerStateController.playerStates previousState =
-    PlayerStateController.playerStates.idle;
-    private PlayerStateController.playerStates currentState =
-    PlayerStateController.playerStates.idle;
+    private PlayerStateController.playerStates previousState = PlayerStateController.playerStates.idle;
+    private PlayerStateController.playerStates currentState = PlayerStateController.playerStates.idle;
     public float playerJumpForceVertical = 1f; 
     public float playerJumpForceHorizontal = 1f;
     private bool playerHasLanded = true;
@@ -51,8 +49,7 @@ void OnDisable()
                 break;
             case PlayerStateController.playerStates.left:
                 //moure cap a l'esquerra modificant la posició
-                transform.Translate(new Vector3((playerWalkSpeed * -1.0f) *
-                Time.deltaTime, 0.0f, 0.0f));
+                transform.Translate(new Vector3((playerWalkSpeed * -1.0f) * Time.deltaTime, 0.0f, 0.0f));
                 if (localScale.x > 0.0f)
                 {
                     localScale.x *= -1.0f;
@@ -61,8 +58,7 @@ void OnDisable()
                 break;
             case PlayerStateController.playerStates.right:
                 //moure cap a la dreta modificant la posició
-                transform.Translate(new Vector3(playerWalkSpeed * Time.deltaTime,
-                0.0f, 0.0f));
+                transform.Translate(new Vector3(playerWalkSpeed * Time.deltaTime, 0.0f, 0.0f));
                 if (localScale.x < 0.0f)
                 {
                     localScale.x *= -1.0f;
