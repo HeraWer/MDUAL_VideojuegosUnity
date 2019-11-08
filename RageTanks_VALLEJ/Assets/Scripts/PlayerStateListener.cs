@@ -7,9 +7,11 @@ public class PlayerStateListener : MonoBehaviour
 {
     public float playerWalkSpeed = 3f;
     public GameObject playerRespawnPoint = null;
+    public Transform bulletSpawnTransform;
+    public GameObject bulletPrefab = null;
     private Animator playerAnimator = null;
-    private PlayerStateController.playerStates previousState = PlayerStateController.playerStates.idle;
-    private PlayerStateController.playerStates currentState = PlayerStateController.playerStates.idle;
+    private PlayerStateController.playerStates previousState;
+    private PlayerStateController.playerStates currentState;
     public float playerJumpForceVertical = 1f; 
     public float playerJumpForceHorizontal = 1f;
     private bool playerHasLanded = true;
@@ -139,6 +141,25 @@ void OnDisable()
                 transform.rotation = Quaternion.identity; //rotacio: cap
                 GetComponent<Rigidbody2D>().velocity = Vector2.zero; //velocitat lineal: zero
                 break;
+            case PlayerStateController.playerStates.firingWeapon:
+                // Construir l'objecte bala a partir del Prefab
+                GameObject newBullet = (GameObject)Instantiate(bulletPrefab);
+                // Establir la posicio inicial de la bala creada
+                //(la posicio de BulletSpawnTransform)
+                newBullet.transform.position = bulletSpawnTransform.position;
+                
+                // Agafar el component PlayerBulletController de la bala
+                //que s'ha creat
+                PlayerBulletController bullCon = newBullet.GetComponent<PlayerBulletController>();
+                // Assignar a l'atribut playerObject de l'script
+                //PlayerBulletController el Player 
+                bullCon.playerObject = gameObject;
+                // Invocar metode que dispara la bala 
+                bullCon.launchBullet();
+                // Despres de disparar, tornar a l'estat previ.
+                onStateChange(currentState); break;
+
+
         }
         // Guardar estat actual com a estat previ
         previousState = currentState;
@@ -168,7 +189,9 @@ void OnDisable()
                 break;
             case PlayerStateController.playerStates.jump:
                 // Des de Jump només es pot passar a landing o a kill.
-                if (newState == PlayerStateController.playerStates.landing || newState == PlayerStateController.playerStates.kill)
+                if (newState == PlayerStateController.playerStates.landing || newState == PlayerStateController.playerStates.kill 
+                    || newState == PlayerStateController.playerStates.firingWeapon
+)
                 {
                     returnVal = true;
                 }else
@@ -180,8 +203,10 @@ void OnDisable()
                 newState == PlayerStateController.playerStates.left
                 || newState == PlayerStateController.playerStates.right
                 || newState == PlayerStateController.playerStates.idle
+                || newState == PlayerStateController.playerStates.firingWeapon
+
         )
-                returnVal = true;
+                    returnVal = true;
                 else
                     returnVal = false;
                 break;
@@ -190,6 +215,8 @@ void OnDisable()
                 if (
                 newState == PlayerStateController.playerStates.landing
                 || newState == PlayerStateController.playerStates.kill
+                || newState == PlayerStateController.playerStates.firingWeapon
+
                 )
                     returnVal = true;
                 else
@@ -209,6 +236,10 @@ void OnDisable()
                 else
                     returnVal = false;
                 break;
+            case PlayerStateController.playerStates.firingWeapon:
+                returnVal = true;
+                break;
+
         }
         return returnVal;
     }
@@ -235,6 +266,9 @@ void OnDisable()
                 break;
             case PlayerStateController.playerStates.resurrect:
                 break;
+            case PlayerStateController.playerStates.firingWeapon:
+                break;
+
         }
         // Retornar True vol dir 'Abort'. Retornar False vol dir 'Continue'.
         return returnVal;

@@ -14,7 +14,9 @@ public class PlayerStateController : MonoBehaviour
         landing,
         falling,
         kill,
-        resurrect
+        resurrect,
+        firingWeapon,
+        _stateCount
     }
     //Definicio del delegate playerStateHandler
     public delegate void playerStateHandler(PlayerStateController.playerStates newState);
@@ -60,5 +62,14 @@ public class PlayerStateController : MonoBehaviour
         {
             GetComponent<Rigidbody2D>().AddForce(new Vector2(0, 1), ForceMode2D.Impulse);
         }*/
+        //Disparar
+        float firing = Input.GetAxis("Fire1");
+        if (firing > 0.0f)
+        {
+            if (onStateChange != null)
+                onStateChange(PlayerStateController.playerStates.firingWeapon);
+        }
+
     }
+
 }
