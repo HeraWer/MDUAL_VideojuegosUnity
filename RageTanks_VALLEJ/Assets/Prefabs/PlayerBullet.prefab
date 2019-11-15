@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 6545291816743825983}
   - component: {fileID: 4297348423700027396}
   - component: {fileID: 212997961078589954}
+  - component: {fileID: 114540394370963188}
   m_Layer: 0
   m_Name: PlayerBullet
   m_TagString: PlayerBullet
@@ -58,7 +59,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 0.1, y: 0.1}
   m_EdgeRadius: 0
 --- !u!50 &6545291816743825983
 Rigidbody2D:
@@ -75,7 +76,7 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 0
+  m_GravityScale: 1
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1
@@ -143,3 +144,15 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &114540394370963188
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2688066599098890641}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 470b42e21b5f1e24db386025541128a6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

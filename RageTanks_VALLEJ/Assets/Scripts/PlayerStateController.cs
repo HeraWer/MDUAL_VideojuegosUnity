@@ -17,7 +17,11 @@ public class PlayerStateController : MonoBehaviour
         resurrect,
         firingWeapon,
         _stateCount
+
     }
+
+    // Vector per gestionar temporitzacions en cada estat 
+    public static float[] stateDelayTimer = new float[(int)playerStates._stateCount]; 
     //Definicio del delegate playerStateHandler
     public delegate void playerStateHandler(PlayerStateController.playerStates newState);
     //Definicio d'event onStateChange i assignacio de onStateChange com a EventHandler

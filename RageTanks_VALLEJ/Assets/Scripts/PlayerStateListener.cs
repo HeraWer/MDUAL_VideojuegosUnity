@@ -8,6 +8,7 @@ public class PlayerStateListener : MonoBehaviour
     public float playerWalkSpeed = 3f;
     public GameObject playerRespawnPoint = null;
     public Transform bulletSpawnTransform;
+    public Transform bulletSpawnHeadTransform;
     public GameObject bulletPrefab = null;
     private Animator playerAnimator = null;
     private PlayerStateController.playerStates previousState;
@@ -34,6 +35,7 @@ void OnDisable()
     void Start()
     {
         playerAnimator = GetComponent<Animator>();
+        PlayerStateController.stateDelayTimer[(int)PlayerStateController.playerStates.firingWeapon] = 0.0f;
     }
     void LateUpdate()
     {
@@ -146,18 +148,21 @@ void OnDisable()
                 GameObject newBullet = (GameObject)Instantiate(bulletPrefab);
                 // Establir la posicio inicial de la bala creada
                 //(la posicio de BulletSpawnTransform)
-                newBullet.transform.position = bulletSpawnTransform.position;
-                
+                newBullet.transform.position = bulletSpawnHeadTransform.position;
+
                 // Agafar el component PlayerBulletController de la bala
                 //que s'ha creat
-                PlayerBulletController bullCon = newBullet.GetComponent<PlayerBulletController>();
+                // Establir temps a partir del qual es pot tornar a disparar
+                PlayerStateController.stateDelayTimer[(int)PlayerStateController.playerStates.firingWeapon] = Time.time + 0.25f;
+                PlayerBulletParabolicController bullCon = newBullet.GetComponent<PlayerBulletParabolicController>();
                 // Assignar a l'atribut playerObject de l'script
                 //PlayerBulletController el Player 
                 bullCon.playerObject = gameObject;
                 // Invocar metode que dispara la bala 
-                bullCon.launchBullet();
+                bullCon.launchBulletParabolic();
                 // Despres de disparar, tornar a l'estat previ.
-                onStateChange(currentState); break;
+                onStateChange(currentState); 
+                break;
 
 
         }
@@ -267,6 +272,11 @@ void OnDisable()
             case PlayerStateController.playerStates.resurrect:
                 break;
             case PlayerStateController.playerStates.firingWeapon:
+                // Ignorar si no ha passat prou temps
+                if (PlayerStateController.stateDelayTimer[(int)PlayerStateController.playerStates.firingWeapon] > Time.time)
+                { 
+                    returnVal = true; 
+                }
                 break;
 
         }
