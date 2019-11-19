@@ -13,9 +13,10 @@ GameObject:
   - component: {fileID: 2180830592382231575}
   - component: {fileID: 2187812125261411616}
   - component: {fileID: 212069663009551138}
+  - component: {fileID: 114525900959373910}
   m_Layer: 0
   m_Name: PlayerBulletParabolic
-  m_TagString: Untagged
+  m_TagString: PlayerBulletParabolic
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -58,7 +59,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 0.1, y: 0.1}
   m_EdgeRadius: 0
 --- !u!50 &2180830592382231575
 Rigidbody2D:
@@ -143,3 +144,15 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &114525900959373910
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3110583035945970713}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 470b42e21b5f1e24db386025541128a6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
