@@ -4,6 +4,7 @@ public class DeathTriggerScript : MonoBehaviour
 {
     void OnTriggerEnter2D(Collider2D collidedObject)
     {
-        collidedObject.SendMessage("hitDeathTrigger",null,SendMessageOptions.DontRequireReceiver);
+        Debug.Log("hitDeathTrigger");
+        collidedObject.SendMessage("hitDeathTrigger", SendMessageOptions.DontRequireReceiver);
     }
 }

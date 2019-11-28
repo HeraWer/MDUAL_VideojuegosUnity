@@ -74,6 +74,8 @@
     <Compile Include="Assets\Scripts\PlayerColliderListener.cs" />
     <Compile Include="Assets\Scripts\PlayerStateController.cs" />
     <Compile Include="Assets\Scripts\PlayerStateListener.cs" />
+    <Compile Include="Assets\Scripts\SelfDestruct.cs" />
+    <Compile Include="Assets\Scripts\TakeDamageFromPlayerBullet.cs" />
     <Compile Include="Assets\spri.cs" />
     <Reference Include="Unity.TextMeshPro.Editor">
       <HintPath>C:/Users/vcjon/Desktop/AMS2/MPDUAL_Videojuegos/RageTanks_VALLEJ/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>

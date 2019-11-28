@@ -12,7 +12,7 @@ public class PlayerBulletController : MonoBehaviour
     { // Volem que el Player dispari cap al costat al que mira.
 // Aixo ens ho indica el component "local scale" ha de ser trigger
     
-    float mainXScale = playerObject.transform.localPosition.x;
+    float mainXScale = playerObject.transform.localScale.x;
         Vector2 bulletForce;
         if (mainXScale < 0.0f)
         {

@@ -147,25 +147,25 @@ void OnDisable()
             case PlayerStateController.playerStates.firingWeapon:
                 // Construir l'objecte bala a partir del Prefab
                 GameObject newBullet = (GameObject)Instantiate(bulletPrefab);
-                GameObject newBulletParabolic = (GameObject)Instantiate(bulletPrefabParabolic);
+                //GameObject newBulletParabolic = (GameObject)Instantiate(bulletPrefabParabolic);
                 // Establir la posicio inicial de la bala creada
                 //(la posicio de BulletSpawnTransform)
                 newBullet.transform.position = bulletSpawnTransform.position;
-                newBulletParabolic.transform.position = bulletSpawnHeadTransform.position;
+                //newBulletParabolic.transform.position = bulletSpawnHeadTransform.position;
 
                 // Agafar el component PlayerBulletController de la bala
                 //que s'ha creat
                 // Establir temps a partir del qual es pot tornar a disparar
                 PlayerStateController.stateDelayTimer[(int)PlayerStateController.playerStates.firingWeapon] = Time.time + 0.25f;
                 PlayerBulletController bullCon = newBullet.GetComponent<PlayerBulletController>();
-                PlayerBulletParabolicController bullConParabolic = newBulletParabolic.GetComponent<PlayerBulletParabolicController>();
+                //PlayerBulletParabolicController bullConParabolic = newBulletParabolic.GetComponent<PlayerBulletParabolicController>();
                 // Assignar a l'atribut playerObject de l'script
                 //PlayerBulletController el Player 
                 bullCon.playerObject = gameObject;
-                bullConParabolic.playerObject = gameObject;
+                //bullConParabolic.playerObject = gameObject;
                 // Invocar metode que dispara la bala 
                 bullCon.launchBullet();
-                bullConParabolic.launchBulletParabolic();
+                //bullConParabolic.launchBulletParabolic();
                 // Despres de disparar, tornar a l'estat previ.
                 onStateChange(currentState); 
                 break;
