@@ -94,8 +94,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 61233f64a92758d418e21a62f7dde467, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerObject: {fileID: 0}
+  playerObject: {fileID: 2688066599098890641}
   bulletSpeed: 15
+  textContador: {fileID: 0}
 --- !u!212 &212997961078589954
 SpriteRenderer:
   m_ObjectHideFlags: 0

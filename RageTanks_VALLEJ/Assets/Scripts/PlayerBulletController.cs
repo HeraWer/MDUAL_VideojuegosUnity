@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 using
 System.Collections;
 public class PlayerBulletController : MonoBehaviour
@@ -8,6 +9,9 @@ public class PlayerBulletController : MonoBehaviour
     playerObject = null; 
     public float bulletSpeed = 15.0f;
     private float selfDestructTimer = 0.0f;
+    public Text textContador;
+    private int puntuacion = 0;
+
     public void launchBullet()
     { // Volem que el Player dispari cap al costat al que mira.
 // Aixo ens ho indica el component "local scale" ha de ser trigger
@@ -37,4 +41,15 @@ public class PlayerBulletController : MonoBehaviour
                     Destroy(gameObject);
             }
         }
+
+
+    void OnTriggerEnter(Collider other)
+    {
+        //Debug.Log (other.gameObject.tag);
+        if (other.gameObject.tag == "Enemy")
+        {
+            puntuacion = puntuacion + 1;
+            textContador.text = puntuacion.ToString();
+        }
+    }
 }
