@@ -12,10 +12,12 @@ public class ScoreWatcher : MonoBehaviour
     void OnEnable()
     {
         EnemyControllerScript.enemyDied += addScore;
+        BossEventController.bossDied += addScore;
     }
     void OnDisable()
     {
         EnemyControllerScript.enemyDied -= addScore;
+        BossEventController.bossDied -= addScore;
     }
     void addScore(int scoreToAdd)
     {

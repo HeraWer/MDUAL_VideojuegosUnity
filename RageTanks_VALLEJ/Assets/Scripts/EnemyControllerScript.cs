@@ -90,5 +90,23 @@ updateVisualWalkOrientation();
         // Esperar un moment i destruir l'objecte Enemy
         Destroy(gameObject, 0.1f);
     }
+
+    public void hitByCrusher()
+    {
+        // Crear l'objecte emissor de partícules
+        ParticleSystem deathFxParticle =
+        (ParticleSystem)Instantiate(Humo);
+        // Obtenir la posició de l'enemic
+        Vector3 enemyPos = transform.position;
+        // Crear un nou vector davant de l'enemic (incrementar component z)
+        Vector3 particlePosition =
+        new Vector3(enemyPos.x, enemyPos.y, enemyPos.z + 1.0f);
+        // Posicionar l'emissor de partícules en aquesta nova posició
+        deathFxParticle.transform.position = particlePosition;
+        // Generar event enemyDied i donar una puntuacio de 25 punts.
+        enemyDied(25);
+        // Esperar un moment i destruir l'objecte Enemy
+        Destroy(gameObject, 0.1f);
+    }
 }
 

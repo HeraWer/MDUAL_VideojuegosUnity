@@ -9,6 +9,7 @@ TagManager:
   - PlayerBullet
   - PlayerBulletParabolic
   - Enemy
+  - BossEnemy
   layers:
   - Default
   - TransparentFX
@@ -20,7 +21,7 @@ TagManager:
   - 
   - Player
   - Enemy
-  - 
+  - ParticleLayer
   - 
   - 
   - 
@@ -45,4 +46,7 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: ParticleLayer
+    uniqueID: 1719927173
     locked: 0

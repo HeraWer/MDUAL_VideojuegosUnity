@@ -10,13 +10,11 @@ public class PlayerColliderListener : MonoBehaviour
         {
             case "Platform":
                 // Quan el Player cau en una plataforma, canviar l'estat.
-                Debug.Log(collidedObject.tag);
                 targetStateListener.onStateChange(
                 PlayerStateController.playerStates.landing);
                 break;
             case "DeathTrigger":
-                // El Player ha caigut sobre el DeathTrigger. El matem.
-                Debug.Log("Col.lisio amb DeathTrigger. Tag: " + collidedObject.tag);
+                // El Player ha caigut sobre el DeathTrigger. El matem.   
                 targetStateListener.onStateChange(PlayerStateController.playerStates.kill);
                 break;
                 

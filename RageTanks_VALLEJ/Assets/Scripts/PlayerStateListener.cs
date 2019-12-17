@@ -114,7 +114,6 @@ void OnDisable()
                 playerAnimator.SetBool("Walking", true);
                 break;
             case PlayerStateController.playerStates.jump:
-                Debug.Log(newState);
                 if (playerHasLanded)
                 {
                     // jumpDirection determina si el salt es a la dreta, esquerra o vertical 
@@ -292,6 +291,11 @@ void OnDisable()
 
     //Metode cridat en caure de la plataforma i col.lisionar amb DeathTrigger
     public void hitDeathTrigger()
+    {
+        onStateChange(PlayerStateController.playerStates.kill);
+    }
+
+    public void hitByCrusher()
     {
         onStateChange(PlayerStateController.playerStates.kill);
     }
