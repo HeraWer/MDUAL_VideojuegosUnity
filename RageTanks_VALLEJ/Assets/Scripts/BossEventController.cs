@@ -42,6 +42,8 @@ public GameObject bossDeathFX = null;
     private bool isDead = false;
     // Enemics que s'han de matar abans que apareixi el Boss
     private int enemiesLeftToKill = 1;
+    // Particulas humo
+    public ParticleSystem Humo = null;
     // Inicialitzacions. Apuntar-se a escoltar events indicant mètode per fer-ho
     void OnEnable()
     {
@@ -193,6 +195,20 @@ public GameObject bossDeathFX = null;
 
         isDead = true;
         //Implementar sistema de partícules de destrucció del Boss: bossDeathFX
+        // Crear l'objecte emissor de partícules
+        ParticleSystem deathFxParticle =
+        (ParticleSystem)Instantiate(Humo);
+        // Obtenir la posició de l'enemic
+        Vector3 enemyPos = transform.position;
+        // Crear un nou vector davant de l'enemic (incrementar component z)
+        Vector3 particlePosition =
+        new Vector3(enemyPos.x, enemyPos.y, enemyPos.z + 1.0f);
+        // Posicionar l'emissor de partícules en aquesta nova posició
+        deathFxParticle.transform.position = particlePosition;
+        // Generar event enemyDied i donar una puntuacio de 25 punts.
+        enemyDied(25);
+        // Esperar un moment i destruir l'objecte Enemy
+        Destroy(gameObject, 0.1f);
 
         // Generar l'event “bossDied” amb una puntuació de 1000 punts
         if (bossDied != null)

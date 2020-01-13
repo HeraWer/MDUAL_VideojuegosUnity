@@ -2813,6 +2813,7 @@ MonoBehaviour:
   enemiesToStartBattle: 1
   currentEvent: 0
   health: 1
+  Humo: {fileID: 5684154426485343126, guid: 63c5ce1189737004b8a89e7b69fbee7a, type: 3}
 --- !u!1001 &1143426204
 PrefabInstance:
   m_ObjectHideFlags: 0

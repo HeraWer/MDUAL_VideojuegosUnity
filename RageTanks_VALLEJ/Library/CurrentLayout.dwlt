@@ -114,7 +114,7 @@ MonoBehaviour:
   m_MinSize: {x: 683, y: 498}
   m_MaxSize: {x: 14004, y: 14048}
   vertical: 0
-  controlID: 26
+  controlID: 68
 --- !u!114 &6
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -139,7 +139,7 @@ MonoBehaviour:
   m_MinSize: {x: 406, y: 498}
   m_MaxSize: {x: 10002, y: 14048}
   vertical: 1
-  controlID: 27
+  controlID: 69
 --- !u!114 &7
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -164,7 +164,7 @@ MonoBehaviour:
   m_MinSize: {x: 406, y: 224}
   m_MaxSize: {x: 8006, y: 4024}
   vertical: 0
-  controlID: 28
+  controlID: 70
 --- !u!114 &8
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -382,8 +382,8 @@ MonoBehaviour:
   m_SceneHierarchy:
     m_TreeViewState:
       scrollPos: {x: 0, y: 0}
-      m_SelectedIDs: fe0d0000
-      m_LastClickedID: 3582
+      m_SelectedIDs: 5e0d0000
+      m_LastClickedID: 3422
       m_ExpandedIDs: d6fbffff5e0d0000
       m_RenameOverlay:
         m_UserAcceptedRename: 0
@@ -594,10 +594,10 @@ MonoBehaviour:
       e32: 0
       e33: 1
   m_PreviewAnimator: {fileID: 0}
-  m_AnimatorController: {fileID: 9100000, guid: c0715ae7844997342b8bf0406423b400,
+  m_AnimatorController: {fileID: 9100000, guid: ac7d1e0519040dc4c8e909b0643b234e,
     type: 2}
   m_BreadCrumbs:
-  - m_Target: {fileID: 1107566350100085818, guid: c0715ae7844997342b8bf0406423b400,
+  - m_Target: {fileID: 1107271561140716728, guid: ac7d1e0519040dc4c8e909b0643b234e,
       type: 2}
     m_ScrollPosition: {x: 0, y: 0}
   stateMachineGraph: {fileID: 0}
@@ -649,19 +649,19 @@ MonoBehaviour:
     m_ShowAllHits: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets/Scripts
+    - Assets/Textures/Sistema Particulas
   m_ViewMode: 1
   m_StartGridSize: 64
   m_LastFolders:
-  - Assets/Scripts
+  - Assets/Textures/Sistema Particulas
   m_LastFoldersGridSize: -1
   m_LastProjectPath: C:\Users\vcjon\Desktop\AMS2\MPDUAL_Videojuegos\RageTanks_VALLEJ
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
     scrollPos: {x: 0, y: 83}
-    m_SelectedIDs: 760b0000
-    m_LastClickedID: 2934
+    m_SelectedIDs: 7c0b0000
+    m_LastClickedID: 2940
     m_ExpandedIDs: 00000000ac090000640a0000800b0000f60b000000ca9a3b
     m_RenameOverlay:
       m_UserAcceptedRename: 0
