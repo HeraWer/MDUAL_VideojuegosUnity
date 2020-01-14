@@ -10,6 +10,7 @@ TagManager:
   - PlayerBulletParabolic
   - Enemy
   - BossEnemy
+  - RoundWatcher
   layers:
   - Default
   - TransparentFX

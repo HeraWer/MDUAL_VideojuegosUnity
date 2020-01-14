@@ -15,6 +15,17 @@ public class EnemyControllerScript : MonoBehaviour
         // Inicialitzar aleatòriament la direcció de desplaçament
         walkingLeft = (Random.Range(0, 2) == 1);
         updateVisualWalkOrientation();
+
+        // Obtenir nombre de ronda actual
+        GameObject roundWatcherObject =
+        GameObject.FindGameObjectWithTag("RoundWatcher");
+        if (roundWatcherObject != null)
+        {
+            RoundWatcher roundWatcherComponent =
+            roundWatcherObject.GetComponent<RoundWatcher>();
+            // Assignar velocitat segons ronda en curs
+            walkingSpeed = walkingSpeed * roundWatcherComponent.currRound;
+        }
     }
      void Update()
     {

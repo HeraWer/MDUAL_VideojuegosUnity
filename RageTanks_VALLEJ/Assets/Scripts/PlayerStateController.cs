@@ -32,6 +32,7 @@ public class PlayerStateController : MonoBehaviour
         // Recollir l'input actual en el Horizontal axis (eix horitzontal)
         float horizontal = Input.GetAxis("Horizontal");
         //Tractar segons el valor de l'input recollit
+        if (!GameStates.gameActive) return;
         if (horizontal != 0f)
         {
             //Hi ha algun moviment: canviar l'estat del protagonista a left o right
