@@ -13,40 +13,48 @@ public class PlayerStateListener : MonoBehaviour
     //handlers (manegadors) de l'event PlayerStateController.onStateChange. Amb aixo, cada vegada que 
     //es generi un event PlayerStateController.onStateChange, el sistema passara el control a la funcio 
     //onStateChange (i, sequencialment, a totes les funcions que s'hagin afegit a la llista de handlers //d'aquest event) 
-    void OnEnable() {
+    void OnEnable()
+    {
         PlayerStateController.onStateChange += onStateChange;
     }
     //Aquest mètode de MonoBehaviour s'executa cada vegada que es desactiva l'objecte associat a l'script. 
     //Es deixa d'escoltar l'event onStateChange 
-    void OnDisable() {
+    void OnDisable()
+    {
         PlayerStateController.onStateChange -= onStateChange;
     }
-    void Start() {
+    void Start()
+    {
         playerAnimator = GetComponent<Animator>();
     }
-    void LateUpdate() {
+    void LateUpdate()
+    {
         onStateCycle();
     }
 
     // Processar l'estat en cada cicle 
-    void onStateCycle() {
+    void onStateCycle()
+    {
         // Guardar l'actual localScale de l'bjecte (és al component Transform de l'objecte) 
         Vector3 localScale = transform.localScale; transform.localEulerAngles = Vector3.zero;
-        switch (currentState) {
+        switch (currentState)
+        {
             case PlayerStateController.playerStates.idle:
                 break;
             case PlayerStateController.playerStates.left:
                 //moure cap a l'esquerra modificant la posició
                 transform.Translate(new Vector3((playerWalkSpeed * -1.0f) * Time.deltaTime, 0.0f, 0.0f));
-                if (localScale.x > 0.0f) {
+                if (localScale.x > 0.0f)
+                {
                     localScale.x *= -1.0f;
-                    transform.localScale  = localScale;
+                    transform.localScale = localScale;
                 }
                 break;
             case PlayerStateController.playerStates.right:
                 //moure cap a la dreta  modificant la posició
                 transform.Translate(new Vector3(playerWalkSpeed * Time.deltaTime, 0.0f, 0.0f));
-                if(localScale.x< 0.0f) {
+                if (localScale.x < 0.0f)
+                {
                     localScale.x *= -1.0f;
                     transform.localScale = localScale;
                 }
@@ -65,9 +73,10 @@ public class PlayerStateListener : MonoBehaviour
                 onStateChange(PlayerStateController.playerStates.idle);
                 break;
         }
-}
+    }
     // onStateChange es crida sempre que canvia l'estat del player 
-    public void onStateChange(PlayerStateController.playerStates newState) {
+    public void onStateChange(PlayerStateController.playerStates newState)
+    {
         // Si l'estat actual i el nou són el mateix, no cal fer res 
         if (newState == currentState) return;
         // Comprovar que no hi hagi condicions per abortar l'estat 
@@ -76,7 +85,8 @@ public class PlayerStateListener : MonoBehaviour
         if (!checkForValidStatePair(newState)) return;
         // Realitzar les accions necessàries en cada cas per canviar l'estat. 
         // De moment només es gestionen els estats idle, right i left 
-        switch (newState) {
+        switch (newState)
+        {
             case PlayerStateController.playerStates.idle:
                 break;
             case PlayerStateController.playerStates.left:
@@ -84,7 +94,7 @@ public class PlayerStateListener : MonoBehaviour
             case PlayerStateController.playerStates.right:
                 break;
             case PlayerStateController.playerStates.jump:
-                break; 
+                break;
             case PlayerStateController.playerStates.landing:
                 GetComponent<Rigidbody2D>().velocity = Vector2.zero; //velocitat lineal: zero
                 break;
@@ -99,22 +109,24 @@ public class PlayerStateListener : MonoBehaviour
                 break;
         }
         // Guardar estat actual com a estat previ 
-        previousState = currentState; 
+        previousState = currentState;
         // Assignar el nou estat com a estat actual del player 
         currentState = newState;
     }
     // Comprovar si es pot passar al nou estat des de l'actual. 
     // Es tracten diversos estats que encara no estan implementats, perquè el 
     // codi sigui més ilustratiu 
-    bool checkForValidStatePair(PlayerStateController.playerStates newState) {
+    bool checkForValidStatePair(PlayerStateController.playerStates newState)
+    {
         bool returnVal = false;
         // Comparar estat actual amb el candidat a nou estat. 
-        switch (currentState) {
+        switch (currentState)
+        {
             case PlayerStateController.playerStates.idle:
                 // Des de idle es pot passar a qualsevol altre estat 
                 returnVal = true;
                 break;
-     
+
             case PlayerStateController.playerStates.right:
                 // Des de moving right  es pot passar a qualsevol altre estat 
                 returnVal = true;
@@ -129,16 +141,18 @@ public class PlayerStateListener : MonoBehaviour
                 break;
             case PlayerStateController.playerStates.landing:
                 // Des de landing només es pot passar a idle, left o right. 
-                if (newState == PlayerStateController.playerStates.left || newState == PlayerStateController.playerStates.right || newState == PlayerStateController.playerStates.idle) { 
+                if (newState == PlayerStateController.playerStates.left || newState == PlayerStateController.playerStates.right || newState == PlayerStateController.playerStates.idle)
+                {
                     returnVal = true;
                 }
-                else {
+                else
+                {
                     returnVal = false;
                 }
                 break;
             case PlayerStateController.playerStates.falling:
                 // Des de falling només es pot passar a  landing o a kill. 
-                if ( newState == PlayerStateController.playerStates.landing || newState == PlayerStateController.playerStates.kill )
+                if (newState == PlayerStateController.playerStates.landing || newState == PlayerStateController.playerStates.kill)
                     returnVal = true;
                 else
                     returnVal = false;
@@ -150,7 +164,7 @@ public class PlayerStateListener : MonoBehaviour
                 else
                     returnVal = false;
                 break;
-            case PlayerStateController.playerStates. resurrect:
+            case PlayerStateController.playerStates.resurrect:
                 // Des de resurrect només es pot passar Idle 
                 if (newState == PlayerStateController.playerStates.idle)
                     returnVal = true;
@@ -162,9 +176,11 @@ public class PlayerStateListener : MonoBehaviour
     }
     // Aquesta funció comprova si hi ha algun motiu que impedeixi passar al nou estat. 
     // De moment no hi ha cap motiu per cancel·lar cap estat. 
-    bool checkIfAbortOnStateCondition(PlayerStateController.playerStates newState) {
+    bool checkIfAbortOnStateCondition(PlayerStateController.playerStates newState)
+    {
         bool returnVal = false;
-        switch (newState) {
+        switch (newState)
+        {
             case PlayerStateController.playerStates.idle:
                 break;
             case PlayerStateController.playerStates.left:
@@ -193,9 +209,16 @@ public class PlayerStateListener : MonoBehaviour
     }
 
     //CUANDO SE LLAMA A ESTE METODO AUMENTA LA VELOCIDAD DEL PLAYER
-    private void aumentarVelocidad()
+    // private void aumentarVelocidad()
+    // {
+    //     playerWalkSpeed = playerWalkSpeed * 1.2f;
+    // }
+
+    /*void aumentarVelocidad()
     {
-        playerWalkSpeed = playerWalkSpeed * 1.2f;
-    }
+        Debug.Log("Velocidad actual: " + playerWalkSpeed);
+        playerWalkSpeed += 2f;
+        Debug.Log("Velocidad actual: " + playerWalkSpeed);
+    }*/
 
 }
