@@ -63,15 +63,20 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\Scripts\AumentoVelocidadPlayer.cs" />
-    <Compile Include="Assets\Scripts\BetterJump.cs" />
-    <Compile Include="Assets\Scripts\CameraController.cs" />
     <Compile Include="Assets\Scripts\DeathTriggerScript.cs" />
-    <Compile Include="Assets\Scripts\Jump.cs" />
-    <Compile Include="Assets\Scripts\PlatformCollider.cs" />
-    <Compile Include="Assets\Scripts\PlayerStateController.cs" />
-    <Compile Include="Assets\Scripts\PlayerStateListener.cs" />
-    <Compile Include="Assets\Scripts\Rotate.cs" />
+    <Compile Include="Assets\Scripts\MainCamera\CameraController.cs" />
+    <Compile Include="Assets\Scripts\Objects\DoubleJump\DobleSalto.cs" />
+    <Compile Include="Assets\Scripts\Objects\DoubleJump\FinDobleSalto.cs" />
+    <Compile Include="Assets\Scripts\Objects\Portals\TeleportPortalScript.cs" />
+    <Compile Include="Assets\Scripts\Objects\Speed\AumentoVelocidadPlayer.cs" />
+    <Compile Include="Assets\Scripts\Objects\SuperSalto.cs" />
+    <Compile Include="Assets\Scripts\Platforms\PlatformCollider.cs" />
+    <Compile Include="Assets\Scripts\Player\Jump\BetterJump.cs" />
+    <Compile Include="Assets\Scripts\Player\Jump\Jump.cs" />
+    <Compile Include="Assets\Scripts\Player\PlayerStateController.cs" />
+    <Compile Include="Assets\Scripts\Player\PlayerStateListener.cs" />
+    <Compile Include="Assets\Scripts\Player\Rotate\Rotate.cs" />
+    <Compile Include="Assets\Scripts\Spikes\SpikesCollider.cs" />
     <Reference Include="Unity.TextMeshPro.Editor">
       <HintPath>C:/Users/vcjon/Desktop/AMS2/MPDUAL_Videojuegos/JohnLemon/Geometry_Dash/Geometry_Dash/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
     </Reference>
