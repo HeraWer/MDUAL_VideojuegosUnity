@@ -7,7 +7,7 @@ public class Jump : MonoBehaviour
     [Range(1, 20)]
     public float jumpVelocity;
     private static bool estadoJump = false;
-    private static bool plataformaTocada = false;
+    public static bool plataformaTocada = false;
     //private static int rotacionPlayer = 0;
 
     //Definicio del delegate playerStateHandler   

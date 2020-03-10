@@ -4,8 +4,11 @@ using System.Collections;
 public class PlayerStateListener : MonoBehaviour
 {
     public static float playerWalkSpeed = 8f;
+    private float playerSpeedAuxiliar = 8f;
+    public float resurrect_time = 11f;
     public GameObject playerRespawnPoint = null;
     public GameObject playerTeleportPortal = null;
+    public ParticleSystem deadParticle = null;
     private Animator playerAnimator = null;
     private PlayerStateController.playerStates previousState = PlayerStateController.playerStates.idle;
     private PlayerStateController.playerStates currentState = PlayerStateController.playerStates.idle;
@@ -112,9 +115,11 @@ public class PlayerStateListener : MonoBehaviour
             case PlayerStateController.playerStates.kill:
                 break;
             case PlayerStateController.playerStates.resurrect:
-                transform.position = playerRespawnPoint.transform.position; //posicio: la de PlayerRespawnPoint
-                transform.rotation = Quaternion.identity; //rotacio: cap 
-                GetComponent<Rigidbody2D>().velocity = Vector2.zero; //velocitat lineal: zero    
+                PlayerStateController.muerto = true;
+                Jump.plataformaTocada = false;
+                playerSpeedAuxiliar = playerWalkSpeed;
+                playerWalkSpeed = 0f;
+                StartCoroutine(resurrecion());
                 break;
             case PlayerStateController.playerStates.teleport:
                 transform.position = playerTeleportPortal.transform.position;
@@ -226,6 +231,19 @@ public class PlayerStateListener : MonoBehaviour
     //Metode cridat en caure de la plataforma i col.lisionar amb DeathTrigger 
     public void hitDeathTrigger()
     {
+        // Crear l'objecte emissor de partícules
+        ParticleSystem deathFxParticle = (ParticleSystem)Instantiate(deadParticle);
+        //ParticleSystem deathFxParticle = (ParticleSystem)Instantiate(deathFxParticlePrefab2);
+        // Obtenir la posició de l'enemic
+        Vector3 enemyPos = transform.position;
+        // Crear un nou vector davant de l'enemic (incrementar component z)
+        Vector3 particlePosition = new Vector3(enemyPos.x, enemyPos.y, enemyPos.z + 1.0f);
+        // Posicionar l'emissor de partícules en aquesta nova posició
+        deathFxParticle.transform.position = particlePosition;
+
+        // Esperar un moment i destruir l'objecte Enemy
+        Destroy(deathFxParticle.gameObject, 1f);
+
         onStateChange(PlayerStateController.playerStates.kill);
     }
 
@@ -245,9 +263,34 @@ public class PlayerStateListener : MonoBehaviour
         // Debug.Log("Velocidad: " + playerWalkSpeed);
         playerWalkSpeed = 8f;
     }
-
+    
     public void teleportPortalPlayer()
     {
         onStateChange(PlayerStateController.playerStates.teleport);
     }
+
+    public void superSalto()
+    {
+        GetComponent<Rigidbody2D>().AddForce(new Vector2(0, 10), ForceMode2D.Impulse);
+    }
+
+    private IEnumerator resurrecion()
+    {
+        yield return new WaitForSeconds(resurrect_time);
+        transform.position = playerRespawnPoint.transform.position; //posicio: la de PlayerRespawnPoint
+        transform.rotation = Quaternion.identity; //rotacio: cap 
+        GetComponent<Rigidbody2D>().velocity = Vector2.zero; //velocitat lineal: zero
+
+        //GESTIONO QUE LA MUSICA VUELVA A SONAR
+        if (MusicSource.MUSIC_OBJECT == null)
+        {
+            MusicSource.buscarObjetoMusica(); //BUSCO EL OBJETO QUE CONTIENE LA MUSICA DE FONDO
+        }
+        new ControlMusica(MusicSource.MUSIC_OBJECT).playMusica(); //REANUDO LA MUSICA
+
+        PlayerStateController.muerto = false;
+        Jump.plataformaTocada = true;
+        playerWalkSpeed = playerSpeedAuxiliar;
+    }
+
 }

@@ -27,60 +27,64 @@ public class PlayerStateController : MonoBehaviour
     private int siguienteRotacion = 360;
     private bool rotacion = false;
     private bool saltando = false;
+    public static bool muerto = false;
     private static bool plataformaTocada = false;
     void LateUpdate()
     {
 
-        // if (gradosRotacion < 90) {
-        // Debug.Log("Tiempo: " + Time.time + ", Grados: " + gradosRotacion);
-        if (Input.GetKeyUp(KeyCode.Space))
+        if (!muerto)
         {
-            saltando = false;
-        }
-        if (Input.GetKeyDown(KeyCode.Space) && !rotacion)
-        {
-            saltando = true;
-        }
-        if (saltando && plataformaTocada || rotacion)
-        {
-            // Debug.Log("Saltando: " + saltando + ", Plataforma: " + plataformaTocada + " || Rotacion: " + rotacion);
-            if (plataformaTocada)
+            // if (gradosRotacion < 90) {
+            // Debug.Log("Tiempo: " + Time.time + ", Grados: " + gradosRotacion);
+            if (Input.GetKeyUp(KeyCode.Space))
             {
-                //ERROR: SOLUCIONAR GIRAR EN EL SUELO
-                plataformaTocada = false;
-                rotacion = true;
-                siguienteRotacion -= 180;
+                saltando = false;
             }
-            // Debug.Log("Grados: " + gradosRotacion + ", Siguiente: " + siguienteRotacion);
-            if (gradosRotacion != siguienteRotacion)
+            if (Input.GetKeyDown(KeyCode.Space) && !rotacion)
             {
-                transform.eulerAngles = new Vector3(0, 0, gradosRotacion);
-                // if (contador == 1) {
-                gradosRotacion -= 3;
-                // contador = 0;
-                // } else {
-                // gradosRotacion -= 2;
-                //     contador++;
-                // }
+                saltando = true;
+            }
+            if (saltando && plataformaTocada || rotacion)
+            {
+                // Debug.Log("Saltando: " + saltando + ", Plataforma: " + plataformaTocada + " || Rotacion: " + rotacion);
+                if (plataformaTocada)
+                {
+                    //ERROR: SOLUCIONAR GIRAR EN EL SUELO
+                    plataformaTocada = false;
+                    rotacion = true;
+                    siguienteRotacion -= 180;
+                }
+                // Debug.Log("Grados: " + gradosRotacion + ", Siguiente: " + siguienteRotacion);
+                if (gradosRotacion != siguienteRotacion)
+                {
+                    transform.eulerAngles = new Vector3(0, 0, gradosRotacion);
+                    // if (contador == 1) {
+                    gradosRotacion -= 3;
+                    // contador = 0;
+                    // } else {
+                    // gradosRotacion -= 2;
+                    //     contador++;
+                    // }
+                }
+                else
+                {
+                    transform.eulerAngles = new Vector3(0, 0, gradosRotacion);
+                    rotacion = false;
+                    if (siguienteRotacion == 0)
+                    {
+                        siguienteRotacion = 360;
+                        gradosRotacion = 360;
+                    }
+                }
             }
             else
             {
                 transform.eulerAngles = new Vector3(0, 0, gradosRotacion);
-                rotacion = false;
-                if (siguienteRotacion == 0)
-                {
-                    siguienteRotacion = 360;
-                    gradosRotacion = 360;
-                }
             }
-        }
-        else
-        {
-            transform.eulerAngles = new Vector3(0, 0, gradosRotacion);
-        }
 
-        //MANTENGO LA VELOCIDAD DEL PLAYER 
-        onStateChange(PlayerStateController.playerStates.right);
+            //MANTENGO LA VELOCIDAD DEL PLAYER 
+            onStateChange(PlayerStateController.playerStates.right);
+        }
     }
 
     public static void RotacionPlayer()
