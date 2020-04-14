@@ -55,9 +55,12 @@
   <ItemGroup>
      <Compile Include="Assets\Scripts\DeathTriggerScript.cs" />
      <Compile Include="Assets\Scripts\MainCamera\CameraController.cs" />
+     <Compile Include="Assets\Scripts\MainCamera\GameStates.cs" />
      <Compile Include="Assets\Scripts\MainCamera\Parallax.cs" />
+     <Compile Include="Assets\Scripts\MainCamera\StartButtonController.cs" />
      <Compile Include="Assets\Scripts\Musica\ControlMusica.cs" />
      <Compile Include="Assets\Scripts\Musica\MusicSource.cs" />
+     <Compile Include="Assets\Scripts\Objects\Coins\CollectionsCoins.cs" />
      <Compile Include="Assets\Scripts\Objects\DoubleJump\DobleSalto.cs" />
      <Compile Include="Assets\Scripts\Objects\DoubleJump\FinDobleSalto.cs" />
      <Compile Include="Assets\Scripts\Objects\Portals\TeleportPortalScript.cs" />
@@ -286,14 +289,8 @@
  <Reference Include="UnityEngine.SpatialTracking">
  <HintPath>C:/Program Files/Unity/Hub/Editor/2018.4.9f1/Editor/Data/UnityExtensions/Unity/UnitySpatialTracking/RuntimeEditor/UnityEngine.SpatialTracking.dll</HintPath>
  </Reference>
- <Reference Include="Unity.Analytics.Editor">
- <HintPath>C:/Users/vcjon/Desktop/AMS2/MPDUAL_Videojuegos/JohnLemon/Geometry_Dash/Geometry_Dash/Library/PackageCache/com.unity.analytics@3.2.2/Unity.Analytics.Editor.dll</HintPath>
- </Reference>
  <Reference Include="Unity.Analytics.StandardEvents">
- <HintPath>C:/Users/vcjon/Desktop/AMS2/MPDUAL_Videojuegos/JohnLemon/Geometry_Dash/Geometry_Dash/Library/PackageCache/com.unity.analytics@3.2.2/Unity.Analytics.StandardEvents.dll</HintPath>
- </Reference>
- <Reference Include="Unity.Analytics.Tracker">
- <HintPath>C:/Users/vcjon/Desktop/AMS2/MPDUAL_Videojuegos/JohnLemon/Geometry_Dash/Geometry_Dash/Library/PackageCache/com.unity.analytics@3.2.2/Unity.Analytics.Tracker.dll</HintPath>
+ <HintPath>C:/Users/vcjon/Desktop/AMS2/MPDUAL_Videojuegos/JohnLemon/Geometry_Dash/Geometry_Dash/Library/PackageCache/com.unity.analytics@3.2.3/AnalyticsStandardEvents/Unity.Analytics.StandardEvents.dll</HintPath>
  </Reference>
  <Reference Include="netstandard">
  <HintPath>C:/Program Files/Unity/Hub/Editor/2018.4.9f1/Editor/Data/NetStandard/ref/2.0.0/netstandard.dll</HintPath>

@@ -10,6 +10,7 @@ public class PlayerStateListener : MonoBehaviour
     public GameObject playerTeleportPortal = null;
     public ParticleSystem deadParticle = null;
     private Animator playerAnimator = null;
+
     private PlayerStateController.playerStates previousState = PlayerStateController.playerStates.idle;
     private PlayerStateController.playerStates currentState = PlayerStateController.playerStates.idle;
 

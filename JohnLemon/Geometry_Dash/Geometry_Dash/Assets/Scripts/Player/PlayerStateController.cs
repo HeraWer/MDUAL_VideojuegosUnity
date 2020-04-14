@@ -29,8 +29,11 @@ public class PlayerStateController : MonoBehaviour
     private bool saltando = false;
     public static bool muerto = false;
     private static bool plataformaTocada = false;
+    public int points = 0;
+
     void LateUpdate()
     {
+        if(!GameStates.gameActive) return;
 
         if (!muerto)
         {
@@ -92,7 +95,8 @@ public class PlayerStateController : MonoBehaviour
         plataformaTocada = true;
     }
 
-    public static void ReinicioStatus() {
-        
+    public static void ReinicioStatus()
+    {
+
     }
 }
